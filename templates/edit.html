@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Cafe{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1 class="heading">{{cafe.title}}</h1>
+    <p class="description">Edit cafe Rating</p>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            <label class="form-label">{{ form.wifi.label }}</label>
+            {% for subfield in form.wifi %}
+            <div class="form-check">
+                {{ subfield(class="form-check-input") }}
+                {{ subfield.label(class="form-check-label") }}
+            </div>
+            {% endfor %}
+            {% for error in form.wifi.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Repeat for sockets and toilet -->
+        <div class="mb-3">
+            <label class="form-label">{{ form.sockets.label }}</label>
+            {% for subfield in form.sockets %}
+            <div class="form-check">
+                {{ subfield(class="form-check-input") }}
+                {{ subfield.label(class="form-check-label") }}
+            </div>
+            {% endfor %}
+            {% for error in form.sockets.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">{{ form.toilet.label }}</label>
+            {% for subfield in form.toilet %}
+            <div class="form-check">
+                {{ subfield(class="form-check-input") }}
+                {{ subfield.label(class="form-check-label") }}
+            </div>
+            {% endfor %}
+            {% for error in form.toilet.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.coffe_price.label(class="form-label") }}
+            {{ form.coffe_price(class="form-control") }}
+            {% for error in form.coffe_price.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            {{ form.seats.label(class="form-label") }}
+            {{ form.seats(class="form-control") }}
+            {% for error in form.seats.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+    </form>
+
+
+</div>
+{% endblock %}

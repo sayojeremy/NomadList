@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}My Top 10 Cafes{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="heading">Top Cafes by ranking</h1>
+    <p class="description">These are my all-time favourite cafes.</p>
+
+    <div class="row">
+        {% for cafe in cafes %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <section class="container my-5">
+                <div class="card pb-4">
+                    <div class="front" style="background-image: url('{{cafe.img_url}}');">
+                        <p class="large">{{ cafe.name }}</p>
+                    </div>
+                    <div class="back">
+                        <div>
+                            <div class="title">
+                                {{cafe.name}} <span class="release_date">({{cafe.location}})</span>
+                            </div>
+                            <div class="Price">
+                                <label>Coffee Price: {{cafe.coffee_price}}</label>
+                            </div>
+                            <p class="has wifi"> Has WiFi: {{cafe.has_wifi}}</p>
+                            <p class="Calls"> Can Take calls :{{cafe.can_take_calls}}</p>
+                            <p class="has sockets"> Has sockets: {{cafe.has_sockets}}</p>
+                            <p class="seats"> Number of seats :{{cafe.seats}}</p>
+
+                            <a href="{{ url_for('edit', id=cafe.id)}}" class="button">Update</a>
+                            <a href="{{ url_for('delete', id=cafe.id)}}" class="button">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container text-center add">
+    <a href="{{url_for('add')}}" class="button">Add Movie</a>
+</div>
+{% endblock %}
